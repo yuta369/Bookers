@@ -1,9 +1,15 @@
-<h2>Title:</h2>
-<p><%= @book.title %></p>
+<div class="title">
+    <h2>Title:</h2>
+    <p><%= @book.title %></p>
+</div>
 
-<h2>Body:</h2>
-<p><%= @book.body %></p>
+<div class="body">
+    <h2>Body:</h2>
+    <p><%= @book.body %></p>
+</div>
 
-<%= link_to 'Edit' , edit_book_path(@book.id) %>
-<%= p "|"%>
-<%= link_to 'Back' , '/books' %>
+<div class="link">
+    <%= link_to 'Edit' , edit_book_path(@book.id) %>
+    <%= p "|"%>
+    <%= link_to 'Back' , '/books' %>
+</div>

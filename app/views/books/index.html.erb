@@ -1,28 +1,29 @@
 <h1>Books</h1>
-<h4>Title</h4>
-<h4>Body</h4>
-
-<% if  Book.all %>
-
-  <%  Book.all.each do |book| %>
-
-    <span><%= book.title %></span>
-
-    <span><%= book.body %></span>
-
-    <span>
-      <%= link_to 'Show' , book_path(book.id) %>
-      <%= link_to 'Edit' , edit_book_path(book.id) %>
-      <%= link_to 'Destroy', book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
-    </span>
-
+<div class="table-m">
+<table>
+  <tr>
+    <th class="th-title"><h4>Title</h4></th>
+    <th class="th-body"><h4>Body</h4></th>
+  </tr>
+  <% if Book.all %>
+  
+    <% Book.all.each do |book| %>
+      <tr>
+        <td class="th-title"><%= book.title %></td>
+        <td class="th-body"><%= book.body %>
+        <td>
+          <%= link_to 'Show' , book_path(book.id) %>
+          <%= link_to 'Edit' , edit_book_path(book.id) %>
+          <%= link_to 'Destroy', book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
+        </td>
+      </tr>
+    <% end %>
+</table>
+  <% else %>
+    <%= p "まだ投稿されていません" %>
   <% end %>
+</div>
 
-<% else %>
-
-  <%= p "まだ投稿されていません" %>
-
-<% end %>
 
 <h1>New Book</h1>
 <% if @book.errors.any? %>
@@ -35,13 +36,17 @@
     </ul>
   </div>
 <% end %>
-<!-- form_with部分 -->
 <%= form_with model: @book do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
+  <div class="form-group">
+    <h4 class="left-align">Title</h4>
+    <%= f.text_field :title, class: "vertical-align" %>
+  </div>
 
-  <h4>Body</h4>
-  <%= f.text_area :body %>
+  <div class="form-group">
+    <h4 class="left-align">Body</h4>
+    <%= f.text_area :body, class: "vertical-align" %>
+  </div>
+  
+    <%= f.submit 'Create Book' , class: "submit" %>
 
-  <%= f.submit 'Create Book' %>
 <% end %>
